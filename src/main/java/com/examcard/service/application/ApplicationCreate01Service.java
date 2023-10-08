@@ -25,7 +25,6 @@ public class ApplicationCreate01Service {
 	public void insert(ApplicationDto customerApplicationDto) {
 		MCustomerApl mCustomerApl = new MCustomerApl();
 		BeanUtils.copyProperties(customerApplicationDto, mCustomerApl);
-//		UserDto userDto = AuthenticationUtil.getUserDto();
 		mCustomerApl.setId(mCustomerAplIdSequencer.getNext());
 		mCustomerApl.setUpdateDate(OperationDateUtil.getDate());
 		mCustomerApl.setAplStatus(ApplicationStatus.APPLICATION.getCode());
@@ -37,7 +36,6 @@ public class ApplicationCreate01Service {
 	public void update(ApplicationDto customerApplicationDto) {
 		MCustomerApl mCustomerApl = new MCustomerApl();
 		BeanUtils.copyProperties(customerApplicationDto, mCustomerApl);
-//		UserDto userDto = AuthenticationUtil.getUserDto();
 		mCustomerApl.setId(customerApplicationDto.getId());
 		mCustomerApl.setUpdateDate(OperationDateUtil.getDate());
 		mCustomerAplRepository.save(mCustomerApl);

@@ -17,9 +17,14 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public UserDto getUser(String id) {
-		Optional<Employee> employee = userRepository.findById(id);
+		Optional<Employee> optional = userRepository.findById(id);
 		UserDto userDto = new UserDto();
-		BeanUtils.copyProperties(employee, userDto);
+		if (optional.isPresent()) {
+			Employee employee = optional.get();
+			BeanUtils.copyProperties(employee, userDto);
+			userDto.setDepId(employee.getDepartment().getId());
+			userDto.setDepName(employee.getDepartment().getDepName());
+		}
 		return userDto;
 	}
 }

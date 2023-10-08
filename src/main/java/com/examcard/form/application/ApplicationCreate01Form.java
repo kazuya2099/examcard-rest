@@ -88,19 +88,15 @@ public class ApplicationCreate01Form {
 	@Length(max=255)
 	private String email;
 	
-	@NotBlank
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String setaiFamily;
 	
-	@NotBlank
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String setaiCount;
 	
-	@NotBlank
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String setaiStatus;
 	
-	@NotBlank
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String setaiYear;
 	
@@ -116,33 +112,26 @@ public class ApplicationCreate01Form {
 	@Digits(integer = 12, fraction = 0)
 	private Long savings;
 	
-	@NotBlank
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String employmentStatus;
 	
-	@NotBlank
 	@Length(max=30)
 	private String companyName;
 	
-	@NotBlank
 	@Length(max=3)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyZip1;
 	
-	@NotBlank
 	@Length(max=4)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyZip2;
 	
-	@NotBlank
 	@Length(max=4)
 	private String companyAddressPrefecture;
 	
-	@NotBlank
 	@Length(max=80)
 	private String companyAddressCity;
 	
-	@NotBlank
 	@Length(max=80)
 	private String companyAddressOoaza;
 	
@@ -152,22 +141,18 @@ public class ApplicationCreate01Form {
 	@Length(max=80)
 	private String companyAddressOther;
 	
-	@NotBlank
 	@Length(max=4)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyTel1;
 	
-	@NotBlank
 	@Length(max=4)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyTel2;
 	
-	@NotBlank
 	@Length(max=4)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyTel3;
 	
-	@NotBlank
 	@Length(max=20)
 	private String companyDepartment;
 	
@@ -175,7 +160,6 @@ public class ApplicationCreate01Form {
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyIndustryType;
 	
-	@NotBlank
 	@Length(max=2)
 	@Pattern(regexp = "^\\d*$", message = "{validation.hankaku.number.message}")
 	private String companyWorkYears;

@@ -6,5 +6,4 @@ import com.examcard.model.MCustomerApl;
 
 public interface CustomerApplicationRepository {
 	public List<MCustomerApl> findByCriteria(CustomerApplicationSearchParam searchParam);
-	public String getSequence();
 }

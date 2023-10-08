@@ -1,20 +1,33 @@
 package com.examcard.service.application;
 
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.examcard.component.common.CodeList;
 import com.examcard.dto.customer.sales.ApplicationDto;
-import com.examcard.service.common.ApplicationCommonService;
+import com.examcard.model.MCustomerApl;
+import com.examcard.repository.common.MCustomerAplRepository;
 
 @Service
 @Transactional
 public class ApplicationDetail01Service {
 
 	@Autowired
-	ApplicationCommonService applicationCommonService;
+	private CodeList codeList;
+	
+	@Autowired
+	private MCustomerAplRepository mCustomerAplRepository;
 	
 	public ApplicationDto getApplication(String id) {
-		return applicationCommonService.getApplication(id);
+		Optional<MCustomerApl> opt = mCustomerAplRepository.findById(id);
+		MCustomerApl mCustomerApl = opt.orElse(new MCustomerApl());
+		ApplicationDto applicationDto = new ApplicationDto();
+		BeanUtils.copyProperties(mCustomerApl, applicationDto);
+		codeList.setCodeName(applicationDto);
+		return applicationDto;
 	}
 }

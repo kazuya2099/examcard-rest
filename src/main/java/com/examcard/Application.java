@@ -1,5 +1,8 @@
 package com.examcard;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.AccessDeniedException;
+import java.util.List;
 import java.util.Properties;
 
 import org.springframework.boot.SpringApplication;
@@ -8,7 +11,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,8 +23,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.examcard.exception.ExceptionLogger;
 import com.examcard.filter.ExceptionLoggingFilter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Import({DatasourceConfig.class, SecurityConfig.class})
+@Import({DatasourceConfig.class})
 @SpringBootApplication(scanBasePackages = "com.examcard")
 public class Application implements WebMvcConfigurer {
 
@@ -27,6 +33,15 @@ public class Application implements WebMvcConfigurer {
 		SpringApplication.run(Application.class, args);
 	}
 
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+		converters.add(mappingJackson2HttpMessageConverter);
+		converters.add(new StringHttpMessageConverter(StandardCharsets.UTF_8));
+	}
+	
 	@Bean
 	ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -65,9 +80,6 @@ public class Application implements WebMvcConfigurer {
 		SimpleMappingExceptionResolver simpleMappingExceptionResolver = new SimpleMappingExceptionResolver();
 		simpleMappingExceptionResolver.setOrder(1);
 		simpleMappingExceptionResolver.setExceptionMappings(mappings);
-		simpleMappingExceptionResolver.setExcludedExceptions(new Class<?>[] {
-			org.springframework.security.access.AccessDeniedException.class,
-		});
 		simpleMappingExceptionResolver.setExcludedExceptions(AccessDeniedException.class);
 		return simpleMappingExceptionResolver;
 	}

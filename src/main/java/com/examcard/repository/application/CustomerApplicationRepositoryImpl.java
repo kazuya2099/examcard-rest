@@ -71,10 +71,4 @@ public class CustomerApplicationRepositoryImpl implements CustomerApplicationRep
 		}
 		return findQuery.getResultList();
 	}
-
-	@Override
-	public String getSequence() {
-		TypedQuery<String> findQuery = entityManager.createQuery("SELECT TO_CHAR(M_CUSTOMER_APL_SEQ.NEXTVAL,'0000000') FROM DUAL", String.class);
-		return findQuery.getSingleResult();
-	}
 }

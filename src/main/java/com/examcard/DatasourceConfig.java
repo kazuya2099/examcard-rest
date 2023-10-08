@@ -77,30 +77,4 @@ public class DatasourceConfig {
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
 	}
-
-//	@Bean
-//	JdbcTemplate jdbcTemplate() {
-//		return new JdbcTemplate(dataSource());
-//	}
-//
-//	@Bean
-//	SqlSessionFactoryBean sessionFactory() throws IOException {
-//		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-//		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-//		bean.setDataSource(dataSource());
-//		bean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-//		bean.setMapperLocations(resolver.getResources("classpath:sql/**/*.xml"));
-//		return bean;
-//	}
-//
-//	@Bean
-//	SqlSessionTemplate sqlSession() {
-//		SqlSessionTemplate bean = null;
-//		try {
-//			bean = new SqlSessionTemplate(sessionFactory().getObject());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return bean;
-//	}
 }
