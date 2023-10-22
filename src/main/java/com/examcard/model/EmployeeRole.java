@@ -2,6 +2,8 @@ package com.examcard.model;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -16,6 +18,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="EMPLOYEE_ROLE")
 @NamedQuery(name="EmployeeRole.findAll", query="SELECT e FROM EmployeeRole e")
+@Where(clause = "DEL_FLG = '0'")
 public class EmployeeRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 

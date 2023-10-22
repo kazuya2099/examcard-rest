@@ -7,16 +7,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringJoiner;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.WebRequestInterceptor;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ParameterLoggingInterceptor implements WebRequestInterceptor {
 
-	private static final Log logger = LogFactory.getLog(ParameterLoggingInterceptor.class);
-	
 	@Override
 	public void preHandle(WebRequest paramWebRequest) {
 		List<String> params = new ArrayList<>();
@@ -32,7 +31,7 @@ public class ParameterLoggingInterceptor implements WebRequestInterceptor {
 		
 		StringJoiner join = new StringJoiner(", ", "[", "]");
 		params.forEach(e -> join.add(e));
-		logger.info(join.toString());
+		log.info(join.toString());
 	}
 
 	@Override

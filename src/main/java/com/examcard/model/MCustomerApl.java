@@ -3,6 +3,8 @@ package com.examcard.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name="M_CUSTOMER_APL")
 @NamedQuery(name="MCustomerApl.findAll", query="SELECT m FROM MCustomerApl m")
+@Where(clause = "DEL_FLG = '0'")
 public class MCustomerApl implements Serializable {
 	private static final long serialVersionUID = 1L;
 

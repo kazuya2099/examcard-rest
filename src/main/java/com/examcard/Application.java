@@ -25,7 +25,7 @@ import com.examcard.exception.ExceptionLogger;
 import com.examcard.filter.ExceptionLoggingFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Import({DatasourceConfig.class})
+@Import({ DatasourceConfig.class })
 @SpringBootApplication(scanBasePackages = "com.examcard")
 public class Application implements WebMvcConfigurer {
 
@@ -41,7 +41,7 @@ public class Application implements WebMvcConfigurer {
 		converters.add(mappingJackson2HttpMessageConverter);
 		converters.add(new StringHttpMessageConverter(StandardCharsets.UTF_8));
 	}
-	
+
 	@Bean
 	ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -49,7 +49,7 @@ public class Application implements WebMvcConfigurer {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-	
+
 	@Bean
 	MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -59,7 +59,7 @@ public class Application implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public	LocalValidatorFactoryBean getValidator() {
+	public LocalValidatorFactoryBean getValidator() {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 		bean.setValidationMessageSource(messageSource());
 		return bean;
@@ -67,8 +67,8 @@ public class Application implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		String[] mappings = {"/resources/**", "/css/**", "/javascript/**"};
-		String[] locations = {"/resources/", "/css/", "/javascript/"};
+		String[] mappings = { "/resources/**", "/css/**", "/javascript/**" };
+		String[] locations = { "/resources/", "/css/", "/javascript/" };
 		registry.addResourceHandler(mappings).addResourceLocations(locations);
 	}
 

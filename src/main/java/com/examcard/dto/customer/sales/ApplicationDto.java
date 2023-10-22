@@ -1,7 +1,6 @@
 package com.examcard.dto.customer.sales;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.Data;
 
@@ -57,5 +56,5 @@ public class ApplicationDto {
 	private String applicationComment;
 	private String dispApplicationStatus;
 	private Date updateDate;
-	private List<UserCardDto> userCardDtoList;
+	private String delFlg;
 }

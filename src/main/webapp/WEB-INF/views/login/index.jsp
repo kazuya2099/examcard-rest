@@ -6,7 +6,7 @@
 <html>
 <head>
 <jsp:include page="../common/head.jsp" flush="true" />
-<link href="${pageContext.request.contextPath}/css/login/login.css"
+<link href="/css/login/login.css"
 	rel="stylesheet">
 <title>exampleカード ログイン</title>
 </head>
@@ -17,7 +17,7 @@
 		$('#top').click(function() {
 			$.ajax({
 				type : "GET",
-				url : "http://localhost:8080/examcard/top/0000001",
+				url : "http://localhost/examcard/top/0000001",
 				data : {
 					name : "John",
 					location : "Boston"
@@ -42,7 +42,7 @@
 			req.mei = "太郎";
 			$.ajax({
 				type : "GET",
-				url : "http://localhost:8080/examcard/application/search01/search",
+				url : "http://localhost/examcard/application/search01/search",
 				data : req,
 			}).done(function(res) {
 				console.log(res);
@@ -55,7 +55,7 @@
 		$('#detail').click(function() {
 			$.ajax({
 				type : "GET",
-				url : "http://localhost:8080/examcard/application/detail01/0000017",
+				url : "http://localhost/examcard/application/detail01/0000017",
 			}).done(function(res) {
 				console.log(res);
 				$("#d-res").text(JSON.stringify(res, null, "  "));
@@ -105,12 +105,12 @@
 			req.setaiStatus = "1";
 			req.tel1 = "090";
 			req.tel2 = "9999";
-			req.tel3 = "9999";
+			req.tel3 = "1111";
 			req.zip1 = "105";
 			req.zip2 = "0001";
 			$.ajax({
 				type : "PUT",
-				url : "http://localhost:8080/examcard/application/create01/update",
+				url : "http://localhost/examcard/application/create01/update",
 				data : req,
 			}).done(function(res) {
 				console.log(res);

@@ -1,21 +1,29 @@
 package com.examcard.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.Where;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
 
 
 /**
  * The persistent class for the DEPARTMENT database table.
  * 
  */
+@Data
 @Entity
 @NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
+@Where(clause = "DEL_FLG = '0'")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,45 +37,18 @@ public class Department implements Serializable {
 	@OneToMany(mappedBy="department")
 	private List<Employee> employees;
 
-	public Department() {
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="REG_DATE")
+	private Date regDate;
 
-	public String getId() {
-		return this.id;
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="UPDATE_DATE")
+	private Date updateDate;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="DEL_DATE")
+	private Date delDate;
 
-	public String getDepName() {
-		return this.depName;
-	}
-
-	public void setDepName(String depName) {
-		this.depName = depName;
-	}
-
-	public List<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
-
-	public Employee addEmployee(Employee employee) {
-		getEmployees().add(employee);
-		employee.setDepartment(this);
-
-		return employee;
-	}
-
-	public Employee removeEmployee(Employee employee) {
-		getEmployees().remove(employee);
-		employee.setDepartment(null);
-
-		return employee;
-	}
-
+	@Column(name="DEL_FLG")
+	private String delFlg;
 }

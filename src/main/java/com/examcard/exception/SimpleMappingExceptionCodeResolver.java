@@ -3,12 +3,11 @@ package com.examcard.exception;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class SimpleMappingExceptionCodeResolver implements ExceptionCodeResolver {
 
-	private static final Logger logger = LoggerFactory.getLogger(SimpleMappingExceptionCodeResolver.class);
 	private LinkedHashMap<String, String> exceptionMappings;
 	private String defaultExceptionCode;
 
@@ -33,7 +32,7 @@ public class SimpleMappingExceptionCodeResolver implements ExceptionCodeResolver
 	@Override
 	public String resolveExceptionCode(Exception ex) {
 		if (ex == null) {
-			logger.warn("target exception is null. return defaultExceptionCode.");
+			log.warn("target exception is null. return defaultExceptionCode.");
 			return defaultExceptionCode;
 		}
 		if (ex instanceof ExceptionCodeProvider) {

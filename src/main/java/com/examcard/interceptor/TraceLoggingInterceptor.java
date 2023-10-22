@@ -2,27 +2,26 @@ package com.examcard.interceptor;
 
 import java.lang.reflect.Method;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.WebRequestInterceptor;
 import org.springframework.web.method.HandlerMethod;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class TraceLoggingInterceptor implements WebRequestInterceptor {
 
-	private static final Log logger = LogFactory.getLog(TraceLoggingInterceptor.class);
-	
 	@Override
 	public void preHandle(WebRequest paramWebRequest) throws Exception {
 		String methodName = getMethodName(paramWebRequest);
-		logger.info(methodName + " : 開始");
+		log.info(methodName + " : 開始");
 	}
 	
 	@Override
 	public void postHandle(WebRequest paramWebRequest, ModelMap paramModelMap) throws Exception {
 		String methodName = getMethodName(paramWebRequest);
-		logger.info(methodName + " : 終了");
+		log.info(methodName + " : 終了");
 	}
 	
 	@Override

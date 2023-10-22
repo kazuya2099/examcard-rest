@@ -35,4 +35,5 @@ public class SearchDto {
 	private Integer pageNo;
 	private Integer pageCount;
 	private Integer pageSize;
+	private String delFlg;
 }

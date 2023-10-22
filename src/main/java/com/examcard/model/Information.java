@@ -3,20 +3,25 @@ package com.examcard.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.annotations.Where;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.Data;
 
 
 /**
  * The persistent class for the INFORMATION database table.
  * 
  */
+@Data
 @Entity
 @NamedQuery(name="Information.findAll", query="SELECT i FROM Information i")
+@Where(clause = "DEL_FLG = '0'")
 public class Information implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -33,39 +38,18 @@ public class Information implements Serializable {
 	@Column(name="START_DATE")
 	private Date startDate;
 
-	public Information() {
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="REG_DATE")
+	private Date regDate;
 
-	public String getId() {
-		return this.id;
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="UPDATE_DATE")
+	private Date updateDate;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="DEL_DATE")
+	private Date delDate;
 
-	public Date getEndDate() {
-		return this.endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public String getMessage() {
-		return this.message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Date getStartDate() {
-		return this.startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
+	@Column(name="DEL_FLG")
+	private String delFlg;
 }

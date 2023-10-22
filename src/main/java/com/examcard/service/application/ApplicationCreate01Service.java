@@ -38,6 +38,7 @@ public class ApplicationCreate01Service {
 		BeanUtils.copyProperties(customerApplicationDto, mCustomerApl);
 		mCustomerApl.setId(customerApplicationDto.getId());
 		mCustomerApl.setUpdateDate(OperationDateUtil.getDate());
+		mCustomerApl.setDelFlg("0");
 		mCustomerAplRepository.save(mCustomerApl);
 	}
 }
